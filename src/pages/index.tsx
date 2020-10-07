@@ -1,3 +1,4 @@
+import { Box, Flex, FormControl, Input } from '@chakra-ui/core';
 import { Formik, Form, Field } from 'formik';
 
 interface Values {
@@ -6,35 +7,41 @@ interface Values {
 }
 
 const createPost = () => {
-
-}
+  console.log('Hello im here');
+};
 
 const Index = () => (
   <>
-    <div> Hello world</div>
-    <Formik 
-    initialValues={{ title: '', text: '' }
-    onSubmit={async (values: Values) => {
-      createPost();
-    }}>
-      <Form>
-        <label htmlFor='title'>First Name</label>
-        <Field id='title' name='title' placeholder='insert title' />
+    <FormControl>
+      <Formik
+        initialValues={{ title: '', text: '' }}
+        onSubmit={async (values: Values) => {
+          createPost();
+        }}
+      >
+        <Flex align='center'>
+          <Box flex={1} mt={4} maxW='500px'>
+            <Form>
+              <label htmlFor='title'>First Name</label>
+              <Input id='title' name='title' placeholder='insert title' />
 
-        <label htmlFor='text'>Last Name</label>
-        <Field id='text' name='text' placeholder='type text here' />
+              <label htmlFor='text'>Last Name</label>
+              <Input id='text' name='text' placeholder='type text here' />
 
-        <label htmlFor='email'>Email</label>
-        <Field
-          id='email'
-          name='email'
-          placeholder='john@acme.com'
-          type='email'
-        />
+              <label htmlFor='email'>Email</label>
+              <Input
+                id='email'
+                name='email'
+                placeholder='john@acme.com'
+                type='email'
+              />
 
-        <button type='submit'>Submit</button>
-      </Form>
-    </Formik>
+              <button type='submit'>Submit</button>
+            </Form>
+          </Box>
+        </Flex>
+      </Formik>
+    </FormControl>
   </>
 );
 
