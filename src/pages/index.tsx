@@ -6,8 +6,8 @@ interface Values {
   text: string;
 }
 
-const createPost = () => {
-  console.log('Hello im here');
+const createPost = (values: Values) => {
+  console.log(values);
 };
 
 const Index = () => (
@@ -16,20 +16,20 @@ const Index = () => (
       <Formik
         initialValues={{ title: '', text: '' }}
         onSubmit={async (values: Values) => {
-          createPost();
+          createPost(values);
         }}
       >
         <Flex align='center'>
           <Box flex={1} mt={4} maxW='500px'>
             <Form>
               <label htmlFor='title'>First Name</label>
-              <Input id='title' name='title' placeholder='insert title' />
+              <Field id='title' name='title' placeholder='insert title' />
 
               <label htmlFor='text'>Last Name</label>
-              <Input id='text' name='text' placeholder='type text here' />
+              <Field id='text' name='text' placeholder='type text here' />
 
               <label htmlFor='email'>Email</label>
-              <Input
+              <Field
                 id='email'
                 name='email'
                 placeholder='john@acme.com'
