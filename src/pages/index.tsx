@@ -1,5 +1,6 @@
 import { Box, Flex, FormControl, Input } from '@chakra-ui/core';
 import { Formik, Form, Field } from 'formik';
+import { InputField } from '../components/InputField';
 
 interface Values {
   title: string;
@@ -22,20 +23,18 @@ const Index = () => (
         <Flex align='center'>
           <Box flex={1} mt={4} maxW='500px'>
             <Form>
-              <label htmlFor='title'>First Name</label>
-              <Field id='title' name='title' placeholder='insert title' />
-
-              <label htmlFor='text'>Last Name</label>
-              <Field id='text' name='text' placeholder='type text here' />
-
-              <label htmlFor='email'>Email</label>
-              <Field
-                id='email'
-                name='email'
-                placeholder='john@acme.com'
-                type='email'
+              <InputField
+                id='title'
+                name='title'
+                placeholder='insert title'
+                label='First Name'
               />
-
+              <InputField
+                id='text'
+                name='text'
+                placeholder='type text here'
+                label='Last Name'
+              />
               <button type='submit'>Submit</button>
             </Form>
           </Box>
