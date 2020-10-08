@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently --kill-others \"next dev\" \"yarn genwatch\"",
     "build": "next build",
     "start": "next start",
     "gen": "graphql-codegen",
-    "genwatch": "graphql-codegen --watch",
-    "devkill": "fuser -k 3000/tcp",
-    "yarn gen": "graphql-codegen --config codegen.yml"
+    "genwatch": "graphql-codegen --config codegen.yml --watch",
+    "devSingle": "next dev",
+    "devkill": "fuser -k 3000/tcp"
   },
   "dependencies": {
     "@apollo/client": "^3.2.2",
