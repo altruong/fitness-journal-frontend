@@ -3,13 +3,12 @@ import {
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-  useApolloClient,
 } from '@apollo/client';
 import { concatPagination } from '@apollo/client/utilities';
 import { useMemo } from 'react';
 //  Normalized cache is the general cache used in Apollo
 let apolloClient: ApolloClient<NormalizedCacheObject>;
-
+/*
 const createIsmorphicLink = () => {
   // Server side
   if (typeof window === 'undefined') {
@@ -19,10 +18,13 @@ const createIsmorphicLink = () => {
   } else {
     // Client side
     const { HttpLink } = require('@apollo/client/link/http');
-    return new HttpLink({ uri: process.env.NEXT_PUBLIC_API_URL as string });
+    return new HttpLink({
+      uri: process.env.NEXT_PUBLIC_API_URL as string,
+      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+    });
   }
 };
-
+*/
 const createApolloClient = () => {
   // Return a new instance of the apollo client
   return new ApolloClient({
@@ -32,17 +34,20 @@ const createApolloClient = () => {
     // Link tells apollo how to execute grahql request
     // e.g. httpreuest or localSchema
 
-    link: createIsmorphicLink(), //Isomorphic meaning it will be running on both the client & server
+    link: new HttpLink({
+      uri: process.env.NEXT_PUBLIC_API_URL as string, // Server URL (must be absolute)
+      credentials: 'include', // Additional fetch() options like `credentials` or `headers`
+    }),
     // cache will be an instance of InMemoryCache
     // i.e. where it stores the results of the queries
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
           fields: {
-            allPosts: concatPagination().
-          }
-        }
-      }
+            allPosts: concatPagination(),
+          },
+        },
+      },
     }),
   });
 };
@@ -70,7 +75,7 @@ export const initializeApollo = (initialState = null) => {
 };
 
 // Return a copy of the apollo client
-export const useApollo = (initialState) => {
+export const useApollo = (initialState: any) => {
   // When the initial data has changed, call initializeApollo,
   // otherwise use a memozied state
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
