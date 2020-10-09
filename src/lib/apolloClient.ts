@@ -1,13 +1,16 @@
 import {
   ApolloClient,
+  createHttpLink,
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client';
 import { concatPagination } from '@apollo/client/utilities';
 import { useMemo } from 'react';
+
 //  Normalized cache is the general cache used in Apollo
 let apolloClient: ApolloClient<NormalizedCacheObject>;
+
 /*
 const createIsmorphicLink = () => {
   // Server side
@@ -25,15 +28,20 @@ const createIsmorphicLink = () => {
   }
 };
 */
+
 const createApolloClient = () => {
   // Return a new instance of the apollo client
   return new ApolloClient({
     // Check if we are running in SSR
     // We do that by checking if there is a window object avaliable
     ssrMode: typeof window === 'undefined',
-    // Link tells apollo how to execute grahql request
-    // e.g. httpreuest or localSchema
+    /*
+    uri: process.env.NEXT_PUBLIC_API_URL as string,
+    credentials: 'include',
+    */
 
+    // Link tells apollo how to execute grahql request
+    // e.g. httprequest or localSchema
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_API_URL as string, // Server URL (must be absolute)
       credentials: 'include', // Additional fetch() options like `credentials` or `headers`

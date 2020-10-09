@@ -14,13 +14,14 @@ const async createPostFunction = (values: Values) => {
 };
 */
 const Index = () => {
-  const [createPost, { data }] = useCreatePostMutation();
+  const [createPost] = useCreatePostMutation();
   return (
     <>
       <FormControl>
         <Formik
           initialValues={{ title: '', text: '' }}
           onSubmit={async (values: Values) => {
+            console.log(values);
             const response = await createPost({ variables: values });
             if (response.errors) {
               console.log(response);
