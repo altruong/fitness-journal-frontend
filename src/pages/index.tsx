@@ -1,13 +1,23 @@
-import { Box, Flex, FormControl, Input } from '@chakra-ui/core';
-import { Formik, Form, Field } from 'formik';
-import { InputField } from '../components/InputField';
+import { Stack, Heading, Text } from '@chakra-ui/core';
 import { PostForm } from '../components/PostForm';
-import { useCreatePostMutation } from '../generated/graphql';
+import { usePostsQuery } from '../generated/graphql';
 
 const Index = () => {
+  const { data } = usePostsQuery();
+
   return (
     <>
       <PostForm />
+      <Stack spacing={8}>
+        {data!.posts.map((p) =>
+          !p ? null : (
+            <>
+              <Heading>{p.title}</Heading>
+              <Text>{p.text}</Text>
+            </>
+          )
+        )}
+      </Stack>
     </>
   );
 };
