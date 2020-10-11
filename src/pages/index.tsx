@@ -1,5 +1,5 @@
 import { Stack, Heading, Text } from '@chakra-ui/core';
-import { PostForm } from '../components/PostForm';
+import { PostForm } from '../components/Post/PostForm';
 import { usePostsQuery } from '../generated/graphql';
 
 const Index = () => {

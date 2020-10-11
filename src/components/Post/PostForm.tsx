@@ -1,7 +1,7 @@
 import { FormControl, Flex, Box } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import React from 'react';
-import { useCreatePostMutation } from '../generated/graphql';
+import { useCreatePostMutation } from '../../generated/graphql';
 import { InputField } from './InputField';
 
 interface Values {
