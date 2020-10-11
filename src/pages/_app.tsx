@@ -1,4 +1,4 @@
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/core';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../lib/apolloClient';
 import theme from '../theme';
@@ -9,12 +9,9 @@ function MyApp({ Component, pageProps }) {
   return (
     // ApolloProvider requires an instnace of the Provider
     <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={theme}>
-        <ColorModeProvider>
-          <CSSReset />
-          <Component {...pageProps} />
-        </ColorModeProvider>
-      </ThemeProvider>
+      <ChakraProvider resetCSS theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </ApolloProvider>
   );
 }

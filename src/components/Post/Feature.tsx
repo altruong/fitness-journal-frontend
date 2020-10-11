@@ -1,7 +1,7 @@
 import { Box, Heading, Text } from '@chakra-ui/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-interface FeatureProps {
+interface FeatureProps extends React.InputHTMLAttributes<HTMLInputElement> {
   title: string;
   text: string;
 }

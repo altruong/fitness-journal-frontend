@@ -37,12 +37,20 @@ export type Post = {
 export type Mutation = {
   __typename?: 'Mutation';
   createPost: Post;
+  updatePost?: Maybe<Post>;
 };
 
 
 export type MutationCreatePostArgs = {
   text: Scalars['String'];
   title: Scalars['String'];
+};
+
+
+export type MutationUpdatePostArgs = {
+  text: Scalars['String'];
+  title: Scalars['String'];
+  id: Scalars['String'];
 };
 
 export type CreatePostMutationVariables = Exact<{
