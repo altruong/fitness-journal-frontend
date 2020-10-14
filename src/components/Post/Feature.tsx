@@ -1,5 +1,13 @@
-import { Box,Editable,EditableInput,EditablePreview,Input,Text } from '@chakra-ui/core';
+import {
+  Box,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  Input,
+  Text,
+} from '@chakra-ui/core';
 import React, { useRef, useState } from 'react';
+import { useUpdatePostMutation } from '../../generated/graphql';
 //import { Editable } from './Editable';
 
 interface FeatureProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -8,23 +16,44 @@ interface FeatureProps extends React.InputHTMLAttributes<HTMLInputElement> {
   text: string;
 }
 
+export const Feature: React.FC<FeatureProps> = ({
+  postId,
+  title,
+  text,
+  ...rest
+}) => {
+  const [updatePost] = useUpdatePostMutation();
 
+  const updateTitle = async (value) => {
+    //console.log(value);
+    if (value !== title) {
+      const response = await updatePost({
+        variables: { id: postId, text: text, title: value },
+      });
+      console.log(response.data?.updatePost);
+    }
+  };
 
-export const Feature: React.FC<FeatureProps> = ({ postId, title, text, ...rest }) => {
-  const updateText = ({postId, text}) => {
-    console.log(text + postId)
-  }
+  const updateText = async (value) => {
+    //console.log(value);
+    if (value !== text) {
+      const response = await updatePost({
+        variables: { id: postId, text: value, title: title },
+      });
+      console.log(response.data?.updatePost);
+    }
+  };
+
   return (
     <Box p={5} shadow='md' borderWidth='1px' {...rest}>
-      {/* <Heading fontSize='xl'>{title}</Heading> */}
-      <Text>{postId}</Text>
-      <Editable defaultValue={text} 
-        onSubmit={() => updateText({postId, text})}
-      >
+      <Editable defaultValue={title} onSubmit={(value) => updateTitle(value)}>
         <EditablePreview />
         <EditableInput />
       </Editable>
-      <Text mt={4}>{text}</Text>
+      <Editable defaultValue={text} onSubmit={(value) => updateText(value)}>
+        <EditablePreview />
+        <EditableInput />
+      </Editable>
     </Box>
   );
 };
