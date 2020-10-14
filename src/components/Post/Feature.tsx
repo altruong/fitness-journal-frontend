@@ -8,20 +8,19 @@ interface FeatureProps extends React.InputHTMLAttributes<HTMLInputElement> {
   text: string;
 }
 
-const updateText = (text, postId) => {
-  console.log(text, postId)
-}
+
 
 export const Feature: React.FC<FeatureProps> = ({ postId, title, text, ...rest }) => {
-
-  // State for the input
-  const [task, setTask] = useState("");
-  const inputRef = useRef();
-
+  const updateText = ({postId, text}) => {
+    console.log(text + postId)
+  }
   return (
     <Box p={5} shadow='md' borderWidth='1px' {...rest}>
       {/* <Heading fontSize='xl'>{title}</Heading> */}
-      <Editable defaultValue={text} onSubmit={({text, postId}) => updateText({text, postId})}>
+      <Text>{postId}</Text>
+      <Editable defaultValue={text} 
+        onSubmit={() => updateText({postId, text})}
+      >
         <EditablePreview />
         <EditableInput />
       </Editable>
