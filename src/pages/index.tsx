@@ -14,7 +14,7 @@ const Index = () => {
         {data?.posts.map((p) =>
           !p ? null : (
             <Flex key={p.id}>
-              <Feature title={p.title} text={p.text} width={'800px'}></Feature>
+              <Feature postId={p.id} title={p.title} text={p.text} width={'800px'}></Feature>
             </Flex>
           )
         )}
