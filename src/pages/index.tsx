@@ -1,5 +1,5 @@
 import { Stack, Box, Flex, Center } from '@chakra-ui/core';
-import { Feature } from '../components/Post/Feature';
+import { Post } from '../components/Post/Post';
 import { PostForm } from '../components/Post/PostForm';
 import { usePostsQuery } from '../generated/graphql';
 
@@ -13,12 +13,12 @@ const Index = () => {
         {data?.posts.map((p) =>
           !p ? null : (
             <Flex key={p.id}>
-              <Feature
+              <Post
                 postId={p.id}
                 title={p.title}
                 text={p.text}
                 width={'800px'}
-              ></Feature>
+              ></Post>
             </Flex>
           )
         )}
