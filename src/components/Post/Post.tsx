@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/core';
 import React, { useRef, useState } from 'react';
 import { useUpdatePostMutation } from '../../generated/graphql';
-//import { Editable } from './Editable';
 
 interface FeatureProps extends React.InputHTMLAttributes<HTMLInputElement> {
   postId: string;
