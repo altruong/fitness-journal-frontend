@@ -8,7 +8,10 @@ import {
 } from '@chakra-ui/core';
 import { CloseIcon } from '@chakra-ui/icons';
 import React from 'react';
-import { useUpdatePostMutation } from '../../generated/graphql';
+import {
+  useDeletePostMutation,
+  useUpdatePostMutation,
+} from '../../generated/graphql';
 
 interface PostProps extends React.InputHTMLAttributes<HTMLInputElement> {
   postId: string;
@@ -18,6 +21,7 @@ interface PostProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
   const [updatePost] = useUpdatePostMutation();
+  const [deletePost] = useDeletePostMutation();
 
   const updateTitle = async (value) => {
     if (value !== title) {
@@ -35,10 +39,6 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
       });
       console.log(response.data?.updatePost);
     }
-  };
-
-  const deletePost = async () => {
-    console.log('Delete post');
   };
 
   const DeleteIcon: any = CloseIcon; // hack because library is broken
@@ -62,7 +62,9 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
         variant='outline'
         size='sm'
         icon={<DeleteIcon />}
-        onClick={() => deletePost()}
+        onClick={async () => {
+          await deletePost({ variables: { id: postId } });
+        }}
       />
     </Flex>
   );
