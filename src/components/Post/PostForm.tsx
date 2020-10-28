@@ -1,4 +1,4 @@
-import { FormControl, Flex, Box } from '@chakra-ui/core';
+import { FormControl, Flex, Box, Button } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import React from 'react';
 import { useCreatePostMutation } from '../../generated/graphql';
@@ -12,7 +12,7 @@ interface Values {
 interface PostFormProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 export const PostForm: React.FC<PostFormProps> = ({ ...props }) => {
-  const [createPost] = useCreatePostMutation();
+  const [createPost, { loading }] = useCreatePostMutation();
 
   return (
     <FormControl>
@@ -26,7 +26,7 @@ export const PostForm: React.FC<PostFormProps> = ({ ...props }) => {
           }
         }}
       >
-        <Flex mb={4} justify={'center'}>
+        <Flex justify={'center'}>
           <Box mt={4} maxW='500px'>
             <Form>
               <InputField
@@ -41,7 +41,16 @@ export const PostForm: React.FC<PostFormProps> = ({ ...props }) => {
                 placeholder='type text here'
                 label='Post Text'
               />
-              <button type='submit'>Submit</button>
+              <Button
+                isLoading={loading ? true : false}
+                type='submit'
+                colorScheme='teal'
+                size='sm'
+                p={4}
+                m={2}
+              >
+                Submit
+              </Button>
             </Form>
           </Box>
         </Flex>

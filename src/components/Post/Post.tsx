@@ -44,7 +44,7 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
   const DeleteIcon: any = CloseIcon; // hack because library is broken
 
   return (
-    <Flex p={5} shadow='md' borderWidth='1px' {...rest}>
+    <Flex p={5} shadow='base' borderWidth='1px' {...rest}>
       <Flex direction={'column'}>
         <Editable defaultValue={title} onSubmit={(value) => updateTitle(value)}>
           <EditablePreview />
