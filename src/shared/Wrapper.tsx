@@ -15,7 +15,7 @@ export const Wrapper: React.FC<WrapperProps> = ({
   children,
   variant = 'regular', // default is set to regular
 }) => {
-  console.log(children);
+  //console.log({ ...props });
   return (
     <Box mt={8} mx='auto' maxW={variant === 'regular' ? '800px' : '400px'}>
       {children}
