@@ -13,6 +13,7 @@ const register: React.FC = () => {
     firstName: '',
     lastName: '',
     username: '',
+    email: '',
     password: '',
     confirmPassword: '',
   };
@@ -26,11 +27,17 @@ const register: React.FC = () => {
     // [Matching condition, Error message] Matching condition could either be the password or empty string
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), ''], 'Password must match')
-      .required('Required'),
+      .required('Type password again to confirm'),
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (preValues) => {
+    // Take out confirmPassword field
+    const { confirmPassword, ...values } = preValues;
     console.log('Form data', values);
+    const response = await register({
+      variables: { input: values },
+    });
+    console.log(response);
   };
 
   return (
@@ -41,6 +48,7 @@ const register: React.FC = () => {
         onSubmit={onSubmit}
       >
         {(formik) => {
+          //console.log(formik);
           return (
             <Form>
               <FormikControl
@@ -53,6 +61,7 @@ const register: React.FC = () => {
                 label='Last Name'
                 name='lastName'
               />
+              <FormikControl control='input' label='Username' name='username' />
               <FormikControl
                 control='input'
                 type='email'
@@ -65,7 +74,13 @@ const register: React.FC = () => {
                 label='Password'
                 name='password'
               />
-              <Button mt={4} onSubmit={onSubmit}>
+              <FormikControl
+                control='input'
+                type='password'
+                label='Confirm Password'
+                name='confirmPassword'
+              />
+              <Button type='submit' mt={4}>
                 Submit
               </Button>
             </Form>
