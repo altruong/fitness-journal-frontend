@@ -3,6 +3,7 @@ import React from 'react';
 import { Wrapper } from '../shared/Wrapper';
 import * as Yup from 'yup';
 import { FormikControl } from '../shared/Form/FormikControl';
+import { Button } from '@chakra-ui/core';
 
 interface loginProps {}
 
@@ -40,6 +41,9 @@ const login: React.FC<loginProps> = ({}) => {
                 label='Password'
                 name='password'
               />
+              <Button mt={4} onSubmit={onSubmit}>
+                Submit
+              </Button>
             </Form>
           );
         }}
