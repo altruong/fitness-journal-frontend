@@ -4,10 +4,11 @@ import { Wrapper } from '../shared/Wrapper';
 import * as Yup from 'yup';
 import { FormikControl } from '../shared/Form/FormikControl';
 import { Button } from '@chakra-ui/core';
+import { useLoginMutation } from '../generated/graphql';
 
-interface loginProps {}
+const login: React.FC = () => {
+  const [login] = useLoginMutation();
 
-const login: React.FC<loginProps> = ({}) => {
   const initialValues = { email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -17,6 +18,8 @@ const login: React.FC<loginProps> = ({}) => {
 
   const onSubmit = async (values) => {
     console.log('Form data', values);
+    const response = await login({ variables: values });
+    console.log(response);
   };
 
   return (
@@ -41,7 +44,7 @@ const login: React.FC<loginProps> = ({}) => {
                 label='Password'
                 name='password'
               />
-              <Button mt={4} onSubmit={onSubmit}>
+              <Button type='submit' mt={4} color='blue'>
                 Submit
               </Button>
             </Form>

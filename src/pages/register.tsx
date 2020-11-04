@@ -4,10 +4,11 @@ import { Wrapper } from '../shared/Wrapper';
 import * as Yup from 'yup';
 import { FormikControl } from '../shared/Form/FormikControl';
 import { Button } from '@chakra-ui/core';
+import { useRegisterMutation } from '../generated/graphql';
 
-interface registerProps {}
+const register: React.FC = () => {
+  const [register] = useRegisterMutation();
 
-const register: React.FC<registerProps> = ({}) => {
   const initialValues = {
     firstName: '',
     lastName: '',

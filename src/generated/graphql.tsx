@@ -38,6 +38,8 @@ export type Post = {
 export type User = {
   __typename?: 'User';
   id: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
   username?: Maybe<Scalars['String']>;
   email: Scalars['String'];
   createdAt: Scalars['DateTime'];
@@ -74,8 +76,7 @@ export type MutationDeletePostArgs = {
 
 
 export type MutationRegisterArgs = {
-  password: Scalars['String'];
-  email: Scalars['String'];
+  input: RegisterInput;
 };
 
 
@@ -94,6 +95,14 @@ export type FieldError = {
   __typename?: 'FieldError';
   field: Scalars['String'];
   message: Scalars['String'];
+};
+
+export type RegisterInput = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type CreatePostMutationVariables = Exact<{
@@ -164,8 +173,7 @@ export type LogoutMutation = (
 );
 
 export type RegisterMutationVariables = Exact<{
-  email: Scalars['String'];
-  password: Scalars['String'];
+  input: RegisterInput;
 }>;
 
 
@@ -178,7 +186,7 @@ export type RegisterMutation = (
       & Pick<FieldError, 'field' | 'message'>
     )>, user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'username' | 'email'>
+      & Pick<User, 'id' | 'firstName' | 'lastName' | 'username' | 'email'>
     )> }
   ) }
 );
@@ -395,14 +403,16 @@ export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
 export const RegisterDocument = gql`
-    mutation Register($email: String!, $password: String!) {
-  register(email: $email, password: $password) {
+    mutation Register($input: RegisterInput!) {
+  register(input: $input) {
     error {
       field
       message
     }
     user {
       id
+      firstName
+      lastName
       username
       email
     }
@@ -424,8 +434,7 @@ export type RegisterMutationFn = Apollo.MutationFunction<RegisterMutation, Regis
  * @example
  * const [registerMutation, { data, loading, error }] = useRegisterMutation({
  *   variables: {
- *      email: // value for 'email'
- *      password: // value for 'password'
+ *      input: // value for 'input'
  *   },
  * });
  */
