@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from '../components/Shared/Link';
-import { Wrapper } from '../components/Shared/Wrapper';
+import Link from '../shared/Link';
+import { Wrapper } from '../shared/Wrapper';
 
 interface homeProps {}
 
