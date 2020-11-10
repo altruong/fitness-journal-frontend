@@ -32,6 +32,7 @@ const createIsmorphicLink = () => {
 const createApolloClient = () => {
   // Return a new instance of the apollo client
   return new ApolloClient({
+    connectToDevTools: true,
     // Check if we are running in SSR
     // We do that by checking if there is a window object avaliable
     ssrMode: typeof window === 'undefined',

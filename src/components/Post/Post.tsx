@@ -27,6 +27,9 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
     if (value !== title) {
       const response = await updatePost({
         variables: { id: postId, text: text, title: value },
+        update: (cache) => {
+          cache.evict({ fieldName: 'posts' }); //evicts entire post
+        },
       });
       console.log(response.data?.updatePost);
     }
@@ -36,6 +39,9 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
     if (value !== text) {
       const response = await updatePost({
         variables: { id: postId, text: value, title: title },
+        update: (cache) => {
+          cache.evict({ fieldName: 'posts' }); //evicts entire post
+        },
       });
       console.log(response.data?.updatePost);
     }
@@ -63,7 +69,12 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
         size='sm'
         icon={<DeleteIcon />}
         onClick={async () => {
-          await deletePost({ variables: { id: postId } });
+          await deletePost({
+            variables: { id: postId },
+            update: (cache) => {
+              cache.evict({ fieldName: 'posts' }); //evicts entire post
+            },
+          });
         }}
       />
     </Flex>

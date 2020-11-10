@@ -20,7 +20,12 @@ export const PostForm: React.FC<PostFormProps> = ({ ...props }) => {
         initialValues={{ title: '', text: '' }}
         onSubmit={async (values: Values) => {
           console.log(values);
-          const response = await createPost({ variables: values });
+          const response = await createPost({
+            variables: values,
+            update: (cache) => {
+              cache.evict({ fieldName: 'posts' }); //evicts entire post
+            },
+          });
           if (response.errors) {
             console.log(response);
           }
