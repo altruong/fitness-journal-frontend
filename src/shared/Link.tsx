@@ -14,7 +14,6 @@ type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
 
 export const Link = React.forwardRef((props: LinkProps, ref: any) => {
   const { to, children, ...rest } = props;
-  console.log(props);
   return (
     <div>
       <NextLink href={to}>

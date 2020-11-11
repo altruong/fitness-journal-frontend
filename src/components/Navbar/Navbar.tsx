@@ -14,21 +14,21 @@ export const Navbar: React.FC = () => {
       p='0.8rem'
       ml={'auto'}
     >
-      <FlexContainer maxW='65rem'>
+      <FlexContainer justifyContent='space-between'>
         <Flex>
           <Link to='/'>
             <Heading>GoFit</Heading>
           </Link>
         </Flex>
-        <Flex>
-          <Link mr='auto' to='/'>
-            <Heading>About</Heading>
+        <Flex align='center'>
+          <Link to='/about'>
+            <Heading mr={4}>About</Heading>
           </Link>
-          <Link mr='auto' to='/'>
-            <Button>Sign in</Button>
+          <Link mr='auto' to='/register'>
+            <Button mr={4}>Sign up</Button>
           </Link>
-          <Link mr='auto' to='/'>
-            <Button>Login</Button>
+          <Link mr='auto' to='/login'>
+            <Button mr={4}>Login</Button>
           </Link>
         </Flex>
       </FlexContainer>

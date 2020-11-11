@@ -8,7 +8,7 @@ export const FlexContainer: React.FC<FlexContainerProps> = ({
   ...props
 }) => {
   return (
-    <Container maxW='65rem'>
+    <Container maxW='70rem'>
       <Flex {...props}>{children}</Flex>
     </Container>
   );
