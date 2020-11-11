@@ -1,12 +1,13 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Link } from '@chakra-ui/core';
+import { Link, ResponsiveValue } from '@chakra-ui/core';
 
 // Allow this component to accept all properties of "a" tag
-interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  to: string;
-  // we can add more properties we need from next/link in the future
-}
+type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  ResponsiveValue<any> & {
+    to: string;
+    // we can add more properties we need from next/link in the future
+  };
 
 export default React.forwardRef((props: LinkProps, ref: any) => {
   const { to, children, ...rest } = props;
