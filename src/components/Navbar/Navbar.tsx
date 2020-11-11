@@ -1,7 +1,7 @@
 import { Box, Button, Container, Flex, Heading } from '@chakra-ui/core';
 import React from 'react';
-import Link from '../../shared/Link';
-import { Wrapper } from '../../shared/Wrapper';
+import { FlexContainer } from '../../shared/FlexContainer';
+import { Link } from '../../shared/Link';
 
 export const Navbar: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
       p='0.8rem'
       ml={'auto'}
     >
-      <Container maxW='65rem'>
+      <FlexContainer maxW='65rem'>
         <Flex>
           <Link to='/'>
             <Heading>GoFit</Heading>
@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
             <Button>Login</Button>
           </Link>
         </Flex>
-      </Container>
+      </FlexContainer>
     </Box>
   );
 };

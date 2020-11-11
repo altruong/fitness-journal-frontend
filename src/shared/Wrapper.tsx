@@ -17,7 +17,7 @@ export const Wrapper: React.FC<WrapperProps> = ({
   ...props
 }) => {
   return (
-    <Flex mx='auto' maxW={variant === 'regular' ? '65rem' : '400px'} {...props}>
+    <Flex mx='auto' maxW={variant === 'regular' ? '60rem' : '30rem'} {...props}>
       {children}
     </Flex>
   );

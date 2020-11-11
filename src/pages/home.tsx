@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../shared/Link/Link';
+import { Link } from '../shared/Link';
 import { Wrapper } from '../shared/Wrapper';
 
 interface homeProps {}
