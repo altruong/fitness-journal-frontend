@@ -1,9 +1,18 @@
-import { Box, Button, Container, Flex, Heading } from '@chakra-ui/core';
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Spacer,
+  useColorMode,
+} from '@chakra-ui/core';
 import React from 'react';
 import { FlexContainer } from '../../shared/FlexContainer';
 import { Link } from '../../shared/Link';
 
 export const Navbar: React.FC = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
       id='mainNav'
@@ -14,21 +23,31 @@ export const Navbar: React.FC = () => {
       p='0.8rem'
       ml={'auto'}
     >
-      <FlexContainer justifyContent='space-between'>
+      <FlexContainer constrain justifyContent='space-between'>
         <Flex>
           <Link to='/'>
-            <Heading>GoFit</Heading>
+            <Heading color='white'>GoFit</Heading>
           </Link>
         </Flex>
+        {/* <Spacer /> */}
         <Flex align='center'>
-          <Link to='/about'>
-            <Heading mr={4}>About</Heading>
+          <Button onClick={toggleColorMode} mr={4}>
+            Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+          </Button>
+          <Link to='/about' mr={4} color='white'>
+            About
           </Link>
-          <Link mr='auto' to='/register'>
-            <Button mr={4}>Sign up</Button>
+          <Link to='/register' mr={4} color='white'>
+            Sign up
           </Link>
-          <Link mr='auto' to='/login'>
-            <Button mr={4}>Login</Button>
+          <Link
+            to='/login'
+            color='white'
+            borderRadius='3px'
+            border='1px solid'
+            padding='0.5rem 1rem'
+          >
+            Login
           </Link>
         </Flex>
       </FlexContainer>
