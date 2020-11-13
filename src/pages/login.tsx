@@ -1,6 +1,7 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { Wrapper } from '../shared/Wrapper';
+import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { FormikControl } from '../shared/Form/FormikControl';
 import { Button } from '@chakra-ui/core';
@@ -8,6 +9,7 @@ import { useLoginMutation } from '../generated/graphql';
 
 const login: React.FC = () => {
   const [login] = useLoginMutation();
+  const router = useRouter();
 
   const initialValues = { email: '', password: '' };
 
@@ -20,6 +22,8 @@ const login: React.FC = () => {
     console.log('Form data', values);
     const response = await login({ variables: values });
     console.log(response);
+    // Login successful
+    router.push('/home');
   };
 
   return (
