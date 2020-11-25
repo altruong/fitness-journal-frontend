@@ -14,7 +14,7 @@ import {
 } from '../../generated/graphql';
 
 interface PostProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  postId: string;
+  postId: number;
   title: string;
   text: string;
 }

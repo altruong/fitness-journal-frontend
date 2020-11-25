@@ -22,7 +22,7 @@ export type Query = {
 
 
 export type QueryPostArgs = {
-  id: Scalars['String'];
+  id: Scalars['Int'];
 };
 
 export type Post = {
@@ -88,12 +88,12 @@ export type MutationCreatePostArgs = {
 export type MutationUpdatePostArgs = {
   text: Scalars['String'];
   title: Scalars['String'];
-  id: Scalars['String'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationDeletePostArgs = {
-  id: Scalars['String'];
+  id: Scalars['Int'];
 };
 
 
@@ -198,7 +198,7 @@ export type CreatePostMutation = (
 );
 
 export type DeletePostMutationVariables = Exact<{
-  id: Scalars['String'];
+  id: Scalars['Int'];
 }>;
 
 
@@ -208,7 +208,7 @@ export type DeletePostMutation = (
 );
 
 export type UpdatePostMutationVariables = Exact<{
-  id: Scalars['String'];
+  id: Scalars['Int'];
   title: Scalars['String'];
   text: Scalars['String'];
 }>;
@@ -270,7 +270,7 @@ export type RegisterMutation = (
 );
 
 export type PostQueryVariables = Exact<{
-  id: Scalars['String'];
+  id: Scalars['Int'];
 }>;
 
 
@@ -343,7 +343,7 @@ export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutati
 export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
 export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
 export const DeletePostDocument = gql`
-    mutation DeletePost($id: String!) {
+    mutation DeletePost($id: Int!) {
   deletePost(id: $id)
 }
     `;
@@ -373,7 +373,7 @@ export type DeletePostMutationHookResult = ReturnType<typeof useDeletePostMutati
 export type DeletePostMutationResult = Apollo.MutationResult<DeletePostMutation>;
 export type DeletePostMutationOptions = Apollo.BaseMutationOptions<DeletePostMutation, DeletePostMutationVariables>;
 export const UpdatePostDocument = gql`
-    mutation UpdatePost($id: String!, $title: String!, $text: String!) {
+    mutation UpdatePost($id: Int!, $title: String!, $text: String!) {
   updatePost(id: $id, title: $title, text: $text) {
     id
     created_at
@@ -523,7 +523,7 @@ export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
 export const PostDocument = gql`
-    query Post($id: String!) {
+    query Post($id: Int!) {
   post(id: $id) {
     id
     created_at
