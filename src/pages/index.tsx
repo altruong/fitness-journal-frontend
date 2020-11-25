@@ -1,4 +1,4 @@
-import { Stack, Box, Flex, Center } from '@chakra-ui/core';
+import { Box, Flex, Stack } from '@chakra-ui/core';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Post } from '../components/Post/Post';
 import { PostForm } from '../components/Post/PostForm';

@@ -3,7 +3,7 @@ mutation CreatePost($title: String!, $text: String!) {
     id
     text
     title
-    updatedAt
-    createdAt
+    created_at
+    updated_at
   }
 }

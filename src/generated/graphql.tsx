@@ -27,33 +27,55 @@ export type QueryPostArgs = {
 
 export type Post = {
   __typename?: 'Post';
-  id: Scalars['String'];
+  id: Scalars['Int'];
   title: Scalars['String'];
   text: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
 };
 
 
 export type User = {
   __typename?: 'User';
-  id: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
+  id: Scalars['Int'];
+  first_name: Scalars['String'];
+  last_name: Scalars['String'];
   username?: Maybe<Scalars['String']>;
   email: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createExercise: Exercise;
+  updateExercise?: Maybe<Exercise>;
+  deleteExercise: Scalars['Boolean'];
   createPost: Post;
   updatePost?: Maybe<Post>;
   deletePost: Scalars['Boolean'];
+  createProgram: Program;
+  createSession: Session;
+  addExerciseToSession: Scalars['Boolean'];
   register: SubmissionResponse;
   login: SubmissionResponse;
   logout: Scalars['Boolean'];
+};
+
+
+export type MutationCreateExerciseArgs = {
+  input: ExerciseInput;
+};
+
+
+export type MutationUpdateExerciseArgs = {
+  input: ExerciseInput;
+  exerciseId: Scalars['Int'];
+};
+
+
+export type MutationDeleteExerciseArgs = {
+  exerciseId: Scalars['Int'];
 };
 
 
@@ -75,6 +97,22 @@ export type MutationDeletePostArgs = {
 };
 
 
+export type MutationCreateProgramArgs = {
+  title: Scalars['String'];
+};
+
+
+export type MutationCreateSessionArgs = {
+  programId: Scalars['Int'];
+};
+
+
+export type MutationAddExerciseToSessionArgs = {
+  exerciseId: Scalars['Int'];
+  sessionId: Scalars['Int'];
+};
+
+
 export type MutationRegisterArgs = {
   input: RegisterInput;
 };
@@ -83,6 +121,46 @@ export type MutationRegisterArgs = {
 export type MutationLoginArgs = {
   password: Scalars['String'];
   email: Scalars['String'];
+};
+
+export type Exercise = {
+  __typename?: 'Exercise';
+  id: Scalars['Int'];
+  exercise_type_id: Scalars['Int'];
+  reps: Scalars['Float'];
+  sets: Scalars['Float'];
+  intensity: Scalars['Float'];
+  order: Scalars['Float'];
+  notes?: Maybe<Scalars['String']>;
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+};
+
+export type ExerciseInput = {
+  exercise_type_id: Scalars['Float'];
+  reps: Scalars['Float'];
+  sets: Scalars['Float'];
+  intensity: Scalars['Float'];
+  notes?: Maybe<Scalars['String']>;
+  order: Scalars['Float'];
+};
+
+export type Program = {
+  __typename?: 'Program';
+  id: Scalars['Int'];
+  title: Scalars['String'];
+  start_date: Scalars['DateTime'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+};
+
+export type Session = {
+  __typename?: 'Session';
+  id: Scalars['Int'];
+  program_id: Scalars['Int'];
+  date: Scalars['DateTime'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
 };
 
 export type SubmissionResponse = {
@@ -115,7 +193,7 @@ export type CreatePostMutation = (
   { __typename?: 'Mutation' }
   & { createPost: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'text' | 'title' | 'updatedAt' | 'createdAt'>
+    & Pick<Post, 'id' | 'text' | 'title' | 'created_at' | 'updated_at'>
   ) }
 );
 
@@ -140,7 +218,7 @@ export type UpdatePostMutation = (
   { __typename?: 'Mutation' }
   & { updatePost?: Maybe<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text'>
+    & Pick<Post, 'id' | 'created_at' | 'updated_at' | 'title' | 'text'>
   )> }
 );
 
@@ -186,7 +264,7 @@ export type RegisterMutation = (
       & Pick<FieldError, 'field' | 'message'>
     )>, user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'firstName' | 'lastName' | 'username' | 'email'>
+      & Pick<User, 'id' | 'first_name' | 'last_name' | 'username' | 'email'>
     )> }
   ) }
 );
@@ -200,7 +278,7 @@ export type PostQuery = (
   { __typename?: 'Query' }
   & { post?: Maybe<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text'>
+    & Pick<Post, 'id' | 'created_at' | 'updated_at' | 'title' | 'text'>
   )> }
 );
 
@@ -211,7 +289,7 @@ export type PostsQuery = (
   { __typename?: 'Query' }
   & { posts: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'createdAt' | 'updatedAt' | 'title' | 'text'>
+    & Pick<Post, 'id' | 'created_at' | 'updated_at' | 'title' | 'text'>
   )> }
 );
 
@@ -233,8 +311,8 @@ export const CreatePostDocument = gql`
     id
     text
     title
-    updatedAt
-    createdAt
+    created_at
+    updated_at
   }
 }
     `;
@@ -298,8 +376,8 @@ export const UpdatePostDocument = gql`
     mutation UpdatePost($id: String!, $title: String!, $text: String!) {
   updatePost(id: $id, title: $title, text: $text) {
     id
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     text
   }
@@ -411,8 +489,8 @@ export const RegisterDocument = gql`
     }
     user {
       id
-      firstName
-      lastName
+      first_name
+      last_name
       username
       email
     }
@@ -448,8 +526,8 @@ export const PostDocument = gql`
     query Post($id: String!) {
   post(id: $id) {
     id
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     text
   }
@@ -485,8 +563,8 @@ export const PostsDocument = gql`
     query Posts {
   posts {
     id
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     text
   }

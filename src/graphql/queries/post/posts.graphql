@@ -1,8 +1,8 @@
 query Posts {
   posts {
     id
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     text
   }

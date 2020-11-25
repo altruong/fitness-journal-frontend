@@ -1,8 +1,8 @@
 mutation UpdatePost($id: String!, $title: String!, $text: String!) {
   updatePost(id: $id, title: $title, text: $text) {
     id
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     text
   }

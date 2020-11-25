@@ -1,8 +1,8 @@
 query Post($id: String!) {
   post(id: $id) {
     id
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     text
   }
