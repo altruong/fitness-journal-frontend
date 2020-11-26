@@ -1,4 +1,4 @@
-import { Box, Flex, Stack } from '@chakra-ui/core';
+import { Box, Flex, Stack } from '@chakra-ui/react';
 import { PostForm } from 'components/Post/PostForm';
 import { usePostsQuery } from 'generated/graphql';
 import { Navbar } from 'components/Navbar/Navbar';

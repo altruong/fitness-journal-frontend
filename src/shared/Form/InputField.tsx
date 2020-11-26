@@ -3,7 +3,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Field, useField } from 'formik';
 import React from 'react';
 

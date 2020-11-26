@@ -5,7 +5,7 @@ import {
   Flex,
   IconButton,
   Spacer,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import React from 'react';
 import {

@@ -6,7 +6,7 @@ import {
   Input,
   FormErrorMessage,
   Textarea,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;

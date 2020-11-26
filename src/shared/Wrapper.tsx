@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/react';
 
 interface WrapperProps {
   variant?: 'small' | 'regular'; // What we want the react props we want

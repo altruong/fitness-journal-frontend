@@ -4,7 +4,7 @@ import { Wrapper } from 'shared/Wrapper';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { FormikControl } from 'shared/Form/FormikControl';
-import { Button } from '@chakra-ui/core';
+import { Button } from '@chakra-ui/react';
 import { useLoginMutation } from 'generated/graphql';
 
 const login: React.FC = () => {

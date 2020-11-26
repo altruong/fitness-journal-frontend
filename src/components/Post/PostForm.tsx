@@ -1,4 +1,4 @@
-import { FormControl, Flex, Box, Button } from '@chakra-ui/core';
+import { FormControl, Flex, Box, Button } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import React from 'react';
 import { useCreatePostMutation } from 'generated/graphql';

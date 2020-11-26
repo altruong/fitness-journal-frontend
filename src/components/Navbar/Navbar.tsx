@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, useColorMode } from '@chakra-ui/core';
+import { Box, Button, Flex, Heading, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import { FlexContainer } from 'shared/FlexContainer';
 import { Link } from 'shared/Link';

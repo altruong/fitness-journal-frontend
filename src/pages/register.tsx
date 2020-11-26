@@ -1,10 +1,10 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
-import { Wrapper } from '../shared/Wrapper';
+import { Wrapper } from 'shared/Wrapper';
 import * as Yup from 'yup';
-import { FormikControl } from '../shared/Form/FormikControl';
-import { Button } from '@chakra-ui/core';
-import { useRegisterMutation } from '../generated/graphql';
+import { FormikControl } from 'shared/Form/FormikControl';
+import { Button } from '@chakra-ui/react';
+import { useRegisterMutation } from 'generated/graphql';
 
 const register: React.FC = () => {
   const [register] = useRegisterMutation();

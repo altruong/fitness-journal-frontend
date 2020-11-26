@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 // Allow this component to accept all properties of "a" tag
 type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &

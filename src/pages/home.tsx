@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 import { Navbar } from 'components/Navbar/Navbar';
 import { Link } from 'shared/Link';
