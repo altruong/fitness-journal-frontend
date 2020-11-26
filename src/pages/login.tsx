@@ -1,11 +1,11 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
-import { Wrapper } from '../shared/Wrapper';
+import { Wrapper } from 'shared/Wrapper';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
-import { FormikControl } from '../shared/Form/FormikControl';
+import { FormikControl } from 'shared/Form/FormikControl';
 import { Button } from '@chakra-ui/core';
-import { useLoginMutation } from '../generated/graphql';
+import { useLoginMutation } from 'generated/graphql';
 
 const login: React.FC = () => {
   const [login] = useLoginMutation();

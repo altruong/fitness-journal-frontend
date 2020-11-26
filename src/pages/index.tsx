@@ -1,8 +1,8 @@
 import { Box, Flex, Stack } from '@chakra-ui/core';
-import { Navbar } from '../components/Navbar/Navbar';
-import { Post } from '../components/Post/Post';
-import { PostForm } from '../components/Post/PostForm';
-import { usePostsQuery } from '../generated/graphql';
+import { PostForm } from 'components/Post/PostForm';
+import { usePostsQuery } from 'generated/graphql';
+import { Navbar } from 'components/Navbar/Navbar';
+import { Post } from 'components/Post/Post';
 
 const Index = () => {
   const { data } = usePostsQuery();

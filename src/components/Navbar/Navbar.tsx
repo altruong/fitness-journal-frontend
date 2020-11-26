@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading, useColorMode } from '@chakra-ui/core';
 import React from 'react';
-import { FlexContainer } from '../../shared/FlexContainer';
-import { Link } from '../../shared/Link';
+import { FlexContainer } from 'shared/FlexContainer';
+import { Link } from 'shared/Link';
 
 export const Navbar: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();

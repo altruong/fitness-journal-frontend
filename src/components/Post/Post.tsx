@@ -11,7 +11,7 @@ import React from 'react';
 import {
   useDeletePostMutation,
   useUpdatePostMutation,
-} from '../../generated/graphql';
+} from 'generated/graphql';
 
 interface PostProps extends React.InputHTMLAttributes<HTMLInputElement> {
   postId: number;

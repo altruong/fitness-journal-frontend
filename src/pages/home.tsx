@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/core';
 import React from 'react';
-import { Navbar } from '../components/Navbar/Navbar';
-import { Link } from '../shared/Link';
-import { Wrapper } from '../shared/Wrapper';
+import { Navbar } from 'components/Navbar/Navbar';
+import { Link } from 'shared/Link';
+import { Wrapper } from 'shared/Wrapper';
 
 interface homeProps {}
 
