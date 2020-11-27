@@ -7,7 +7,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
   return (
     <Flex
       className='sidebar-container'
-      zIndex={2}
       w='250px'
       h='100vh'
       // position='relative'

@@ -7,21 +7,19 @@ interface NavbarProps {
   constrain?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = (constrain) => {
+export const Navbar: React.FC<NavbarProps> = ({ constrain = false }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box
       id='mainNav'
       zIndex={1}
       position='sticky'
-      top={0}
       bg='#5c6ac4'
       p='0.8rem'
       h='4rem'
-      w='100%'
-      ml={'auto'}
     >
-      <FlexContainer constrain={false} justifyContent='space-between'>
+      <FlexContainer constrain={constrain} justifyContent='space-between'>
         <Flex>
           <Link to='/'>
             <Heading color='white'>GoFit</Heading>

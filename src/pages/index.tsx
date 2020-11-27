@@ -3,13 +3,15 @@ import { PostForm } from 'components/Post/PostForm';
 import { usePostsQuery } from 'generated/graphql';
 import { Navbar } from 'components/Navbar/Navbar';
 import { Post } from 'components/Post/Post';
+import { FlexContainer } from 'shared/FlexContainer';
 
 const Index = () => {
   const { data } = usePostsQuery();
 
   return (
     <>
-      <Navbar />
+      <Navbar constrain />
+
       <Box mt={8} mx='auto' maxW={'800px'}>
         <PostForm />
         <Stack spacing={8}>
