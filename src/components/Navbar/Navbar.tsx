@@ -3,7 +3,11 @@ import React from 'react';
 import { FlexContainer } from 'shared/FlexContainer';
 import { Link } from 'shared/Link';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  constrain?: boolean;
+}
+
+export const Navbar: React.FC<NavbarProps> = (constrain) => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
@@ -13,9 +17,11 @@ export const Navbar: React.FC = () => {
       top={0}
       bg='#5c6ac4'
       p='0.8rem'
+      h='4rem'
+      w='100%'
       ml={'auto'}
     >
-      <FlexContainer constrain justifyContent='space-between'>
+      <FlexContainer constrain={false} justifyContent='space-between'>
         <Flex>
           <Link to='/'>
             <Heading color='white'>GoFit</Heading>
