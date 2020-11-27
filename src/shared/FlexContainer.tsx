@@ -12,7 +12,6 @@ export const FlexContainer: React.FC<FlexContainerProps> = ({
   children,
   ...props
 }) => {
-  console.log(constrain);
   return (
     <Container maxW={constrain && '70rem'}>
       <Flex {...props}>{children}</Flex>

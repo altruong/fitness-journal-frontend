@@ -15,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ constrain = false }) => {
       id='mainNav'
       zIndex={1}
       position='sticky'
+      top={0}
       bg='#5c6ac4'
       p='0.8rem'
       h='4rem'
