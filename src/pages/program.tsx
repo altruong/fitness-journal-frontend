@@ -1,8 +1,8 @@
-import { Sidebar } from 'components/Sidebar/Sidebar';
+import { Box, Flex, Grid } from '@chakra-ui/react';
+import { Card } from 'components/Card/Card';
 import { Navbar } from 'components/Navbar/Navbar';
+import { Sidebar } from 'components/Sidebar/Sidebar';
 import React from 'react';
-import { FlexContainer } from 'shared/FlexContainer';
-import { Box, Flex } from '@chakra-ui/react';
 
 interface programProps {}
 
@@ -13,7 +13,9 @@ const program: React.FC<programProps> = ({}) => {
 
       <Flex id='main-body' flexDir='column' flexGrow={1}>
         <Navbar />
-
+        <Grid>
+          <Card />
+        </Grid>
         <Box h='1200px' bg='#8fff8f'>
           Hi
         </Box>
