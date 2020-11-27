@@ -1,7 +1,7 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Divider, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 import { SidebarItem } from './SidebarItem';
-
+import { MdSettings } from 'react-icons/md';
 interface SidebarProps {}
 
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
@@ -12,11 +12,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
       h='100vh'
       position='sticky'
       top={0}
-      justify-content='center'
       background='#A7ECFC'
+      flexDir='column'
     >
-      <Heading>Program</Heading>
-      <SidebarItem label='Settings' icon='settings' />
+      <Heading m={5}>Program</Heading>
+      <SidebarItem label='Settings' icon={MdSettings} />
+      <Divider />
+      <Heading>See this</Heading>
     </Flex>
   );
 };
