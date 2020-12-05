@@ -13,6 +13,7 @@ const Home: React.FC<homeProps> = ({}) => {
       <Wrapper>
         <Link to='/'>Click here</Link>
         <div>Hello</div>
+        Column
       </Wrapper>
     </Box>
   );
