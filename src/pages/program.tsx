@@ -4,6 +4,7 @@ import { Column } from 'components/ProgramBoard/Column';
 import { Navbar } from 'components/Navbar/Navbar';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import React from 'react';
+import { Board } from 'components/ProgramBoard/Board';
 
 interface programProps {}
 
@@ -14,6 +15,7 @@ const program: React.FC<programProps> = ({}) => {
 
       <Flex id='main-body' flexDir='column' flexGrow={1}>
         <Navbar />
+        <Board />
         <Grid>
           <Column />
         </Grid>

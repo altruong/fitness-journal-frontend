@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 
 interface CardProps {}
 
@@ -12,6 +13,8 @@ export const Card: React.FC<CardProps> = ({}) => {
       p={8}
       background-color='lightgrey'
       h='2rem'
-    ></Flex>
+    >
+      {/* <Draggable draggableId={}></Draggable> */}
+    </Flex>
   );
 };
