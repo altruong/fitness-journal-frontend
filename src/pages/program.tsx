@@ -16,9 +16,7 @@ const program: React.FC<programProps> = ({}) => {
       <Flex id='main-body' flexDir='column' flexGrow={1}>
         <Navbar />
         <Board />
-        <Grid>
-          <Column />
-        </Grid>
+
         <Box h='1200px' bg='#8fff8f'>
           Hi
         </Box>
