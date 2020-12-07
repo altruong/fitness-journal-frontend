@@ -1,6 +1,11 @@
 import { Flex } from '@chakra-ui/react';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import {
+  DragDropContext,
+  Droppable,
+  resetServerContext,
+} from 'react-beautiful-dnd';
 import { Column } from './Column';
 
 interface BoardProps {}
@@ -14,20 +19,34 @@ export const Board: React.FC<BoardProps> = ({}) => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='board' direction='horizontal' type='COLUMN'>
         {(provided) => (
-          <div className='Board'>
+          <div className='Board' ref={provided.innerRef}>
             {initialData.columnOrder.map((id, index) => {
               const column = initialData.columns[id];
               const tasks = column.taskIds.map(
                 (taskId) => initialData.tasks[taskId]
               );
-              console.log(tasks);
-              return <Column key={id} column={column} index={index}></Column>;
+
+              return (
+                <Column
+                  key={id}
+                  columnId={id}
+                  column={column}
+                  index={index}
+                ></Column>
+              );
             })}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
     </DragDropContext>
   );
+};
+export const getStaticProps: GetStaticProps = async (context) => {
+  // ...
+  console.log('calleds');
+  resetServerContext();
+  return { props: { data: [] } };
 };
 
 const initialData = {

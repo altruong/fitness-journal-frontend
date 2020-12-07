@@ -5,6 +5,8 @@ import { Navbar } from 'components/Navbar/Navbar';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import React from 'react';
 import { Board } from 'components/ProgramBoard/Board';
+import { GetStaticProps } from 'next';
+import { resetServerContext } from 'react-beautiful-dnd';
 
 interface programProps {}
 
@@ -29,3 +31,8 @@ const program: React.FC<programProps> = ({}) => {
 };
 
 export default program;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  resetServerContext();
+  return { props: { data: [] } };
+};
