@@ -1,5 +1,5 @@
 import { Flex, Heading } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Card } from './Card';
 
@@ -11,6 +11,8 @@ interface ColumnProps {
 }
 
 export const Column: React.FC<ColumnProps> = (props: any) => {
+  const [isAddingCard, setIsAddingCard] = useState(false);
+
   const { column, columnId, index, exercises } = props;
   return (
     <Draggable draggableId={columnId} index={index}>
@@ -35,9 +37,16 @@ export const Column: React.FC<ColumnProps> = (props: any) => {
                     <Card key={exercise.id} exercise={exercise} index={index} />
                   );
                 })}
+                {provided.placeholder}
               </Flex>
             )}
           </Droppable>
+          <div
+            className='AddNewExercise'
+            onClick={() => setIsAddingCard(!isAddingCard)}
+          >
+            Add a card
+          </div>
         </Flex>
       )}
     </Draggable>

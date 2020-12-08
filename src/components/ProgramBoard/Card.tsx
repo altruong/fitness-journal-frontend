@@ -20,7 +20,6 @@ export const Card: React.FC<CardProps> = (props) => {
           borderRadius={5}
           p={1}
           background-color='lightgrey'
-          flexDir='column'
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
