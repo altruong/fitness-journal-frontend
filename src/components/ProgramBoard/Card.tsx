@@ -10,7 +10,7 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = (props) => {
   const { key, exercise, index } = props;
-  console.log(exercise);
+
   return (
     <Draggable draggableId={exercise.id} index={index}>
       {(provided) => (

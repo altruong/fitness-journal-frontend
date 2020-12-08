@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { FormikControl } from 'shared/Form/FormikControl';
 import { Button } from '@chakra-ui/react';
 import { useLoginMutation } from 'generated/graphql';
+import path from 'utils/path';
 
 const login: React.FC = () => {
   const [login] = useLoginMutation();
@@ -23,7 +24,7 @@ const login: React.FC = () => {
     const response = await login({ variables: values });
     console.log(response);
     // Login successful
-    router.push('/home');
+    router.push(path.home);
   };
 
   return (

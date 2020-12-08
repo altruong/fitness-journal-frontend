@@ -8,9 +8,9 @@ import { Board } from 'components/ProgramBoard/Board';
 import { GetStaticProps } from 'next';
 import { resetServerContext } from 'react-beautiful-dnd';
 
-interface programProps {}
+interface ProgramProps {}
 
-const program: React.FC<programProps> = ({}) => {
+const Program: React.FC<ProgramProps> = ({}) => {
   return (
     <Flex className='app' width='100vw'>
       <Sidebar />
@@ -30,7 +30,7 @@ const program: React.FC<programProps> = ({}) => {
   );
 };
 
-export default program;
+export default Program;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   resetServerContext();
