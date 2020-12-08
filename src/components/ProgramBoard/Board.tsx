@@ -19,10 +19,10 @@ export const Board: React.FC<BoardProps> = ({}) => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='board' direction='horizontal' type='COLUMN'>
         {(provided) => (
-          <div className='Board' ref={provided.innerRef}>
+          <Flex className='Board' flex-wrap='wrap' ref={provided.innerRef}>
             {initialData.columnOrder.map((id, index) => {
               const column = initialData.columns[id];
-              const tasks = column.taskIds.map(
+              const exercises = column.taskIds.map(
                 (taskId) => initialData.tasks[taskId]
               );
 
@@ -32,21 +32,16 @@ export const Board: React.FC<BoardProps> = ({}) => {
                   columnId={id}
                   column={column}
                   index={index}
+                  exercises={exercises}
                 ></Column>
               );
             })}
             {provided.placeholder}
-          </div>
+          </Flex>
         )}
       </Droppable>
     </DragDropContext>
   );
-};
-export const getStaticProps: GetStaticProps = async (context) => {
-  // ...
-  console.log('calleds');
-  resetServerContext();
-  return { props: { data: [] } };
 };
 
 const initialData = {
