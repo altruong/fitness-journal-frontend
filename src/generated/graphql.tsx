@@ -17,7 +17,7 @@ export type Query = {
   __typename?: 'Query';
   post?: Maybe<Post>;
   posts: Array<Post>;
-  me: User;
+  me?: Maybe<User>;
 };
 
 
@@ -48,6 +48,8 @@ export type User = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createDayPlan: DayPlan;
+  addExerciseToDayPlan: Scalars['Boolean'];
   createExercise: Exercise;
   updateExercise?: Maybe<Exercise>;
   deleteExercise: Scalars['Boolean'];
@@ -60,6 +62,17 @@ export type Mutation = {
   register: SubmissionResponse;
   login: SubmissionResponse;
   logout: Scalars['Boolean'];
+};
+
+
+export type MutationCreateDayPlanArgs = {
+  programId: Scalars['Int'];
+};
+
+
+export type MutationAddExerciseToDayPlanArgs = {
+  exerciseId: Scalars['Int'];
+  dayPlanId: Scalars['Int'];
 };
 
 
@@ -123,6 +136,15 @@ export type MutationLoginArgs = {
   email: Scalars['String'];
 };
 
+export type DayPlan = {
+  __typename?: 'DayPlan';
+  id: Scalars['Int'];
+  program_id: Scalars['Int'];
+  day: Scalars['Int'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+};
+
 export type Exercise = {
   __typename?: 'Exercise';
   id: Scalars['Int'];
@@ -182,6 +204,32 @@ export type RegisterInput = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
+
+export type CreateExerciseMutationVariables = Exact<{
+  input: ExerciseInput;
+}>;
+
+
+export type CreateExerciseMutation = (
+  { __typename?: 'Mutation' }
+  & { createExercise: (
+    { __typename?: 'Exercise' }
+    & Pick<Exercise, 'id' | 'reps' | 'sets' | 'intensity' | 'order' | 'notes' | 'updated_at' | 'created_at'>
+  ) }
+);
+
+export type CreateProgramMutationVariables = Exact<{
+  title: Scalars['String'];
+}>;
+
+
+export type CreateProgramMutation = (
+  { __typename?: 'Mutation' }
+  & { createProgram: (
+    { __typename?: 'Program' }
+    & Pick<Program, 'id' | 'title' | 'updated_at' | 'created_at'>
+  ) }
+);
 
 export type CreatePostMutationVariables = Exact<{
   title: Scalars['String'];
@@ -298,13 +346,87 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MeQuery = (
   { __typename?: 'Query' }
-  & { me: (
+  & { me?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'email' | 'username'>
-  ) }
+  )> }
 );
 
 
+export const CreateExerciseDocument = gql`
+    mutation CreateExercise($input: ExerciseInput!) {
+  createExercise(input: $input) {
+    id
+    reps
+    sets
+    intensity
+    order
+    notes
+    updated_at
+    created_at
+  }
+}
+    `;
+export type CreateExerciseMutationFn = Apollo.MutationFunction<CreateExerciseMutation, CreateExerciseMutationVariables>;
+
+/**
+ * __useCreateExerciseMutation__
+ *
+ * To run a mutation, you first call `useCreateExerciseMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateExerciseMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createExerciseMutation, { data, loading, error }] = useCreateExerciseMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateExerciseMutation(baseOptions?: Apollo.MutationHookOptions<CreateExerciseMutation, CreateExerciseMutationVariables>) {
+        return Apollo.useMutation<CreateExerciseMutation, CreateExerciseMutationVariables>(CreateExerciseDocument, baseOptions);
+      }
+export type CreateExerciseMutationHookResult = ReturnType<typeof useCreateExerciseMutation>;
+export type CreateExerciseMutationResult = Apollo.MutationResult<CreateExerciseMutation>;
+export type CreateExerciseMutationOptions = Apollo.BaseMutationOptions<CreateExerciseMutation, CreateExerciseMutationVariables>;
+export const CreateProgramDocument = gql`
+    mutation CreateProgram($title: String!) {
+  createProgram(title: $title) {
+    id
+    title
+    updated_at
+    created_at
+  }
+}
+    `;
+export type CreateProgramMutationFn = Apollo.MutationFunction<CreateProgramMutation, CreateProgramMutationVariables>;
+
+/**
+ * __useCreateProgramMutation__
+ *
+ * To run a mutation, you first call `useCreateProgramMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateProgramMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createProgramMutation, { data, loading, error }] = useCreateProgramMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *   },
+ * });
+ */
+export function useCreateProgramMutation(baseOptions?: Apollo.MutationHookOptions<CreateProgramMutation, CreateProgramMutationVariables>) {
+        return Apollo.useMutation<CreateProgramMutation, CreateProgramMutationVariables>(CreateProgramDocument, baseOptions);
+      }
+export type CreateProgramMutationHookResult = ReturnType<typeof useCreateProgramMutation>;
+export type CreateProgramMutationResult = Apollo.MutationResult<CreateProgramMutation>;
+export type CreateProgramMutationOptions = Apollo.BaseMutationOptions<CreateProgramMutation, CreateProgramMutationVariables>;
 export const CreatePostDocument = gql`
     mutation CreatePost($title: String!, $text: String!) {
   createPost(title: $title, text: $text) {

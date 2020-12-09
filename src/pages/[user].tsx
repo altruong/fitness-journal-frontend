@@ -6,10 +6,11 @@ interface UserProps {}
 
 const User: React.FC<UserProps> = ({}) => {
   const userId = '1';
+  const programId = '1';
   return (
     <div>
       Dashboard
-      <Link to={path.program(userId)}>Link to user program</Link>
+      <Link to={path.program(userId, programId)}>Link to user program</Link>
     </div>
   );
 };

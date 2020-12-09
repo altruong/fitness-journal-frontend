@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { user: '1' } }, // See the "paths" section below
+      { params: { user: '1', program: '1' } }, // See the "paths" section below
     ],
     fallback: false, // See the "fallback" section below
   };

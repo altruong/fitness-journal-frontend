@@ -2,10 +2,10 @@ export default {
   about: '/about',
   home: '/',
 
-  user(user: string) {
+  program(user: string, program: string) {
     return {
-      href: '/[user]',
-      as: `/${user}`,
+      href: '/[user]/[program]',
+      as: `/${user}/[program]`,
     };
   },
   dashboard: '/$[]',

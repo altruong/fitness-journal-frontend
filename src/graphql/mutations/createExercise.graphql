@@ -1,0 +1,12 @@
+mutation CreateExercise($input: ExerciseInput!) {
+  createExercise(input: $input) {
+    id
+    reps
+    sets
+    intensity
+    order
+    notes
+    updated_at
+    created_at
+  }
+}

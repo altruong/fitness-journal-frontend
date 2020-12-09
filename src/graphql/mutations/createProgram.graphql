@@ -1,0 +1,8 @@
+mutation CreateProgram($title: String!) {
+  createProgram(title: $title) {
+    id
+    title
+    updated_at
+    created_at
+  }
+}
