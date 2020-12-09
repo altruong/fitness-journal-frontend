@@ -66,6 +66,7 @@ export type Mutation = {
 
 
 export type MutationCreateDayPlanArgs = {
+  day: Scalars['Int'];
   programId: Scalars['Int'];
 };
 
@@ -204,6 +205,20 @@ export type RegisterInput = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
+
+export type CreateDayPlanMutationVariables = Exact<{
+  programId: Scalars['Int'];
+  day: Scalars['Int'];
+}>;
+
+
+export type CreateDayPlanMutation = (
+  { __typename?: 'Mutation' }
+  & { createDayPlan: (
+    { __typename?: 'DayPlan' }
+    & Pick<DayPlan, 'id' | 'day' | 'updated_at' | 'created_at'>
+  ) }
+);
 
 export type CreateExerciseMutationVariables = Exact<{
   input: ExerciseInput;
@@ -353,6 +368,42 @@ export type MeQuery = (
 );
 
 
+export const CreateDayPlanDocument = gql`
+    mutation CreateDayPlan($programId: Int!, $day: Int!) {
+  createDayPlan(programId: $programId, day: $day) {
+    id
+    day
+    updated_at
+    created_at
+  }
+}
+    `;
+export type CreateDayPlanMutationFn = Apollo.MutationFunction<CreateDayPlanMutation, CreateDayPlanMutationVariables>;
+
+/**
+ * __useCreateDayPlanMutation__
+ *
+ * To run a mutation, you first call `useCreateDayPlanMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateDayPlanMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createDayPlanMutation, { data, loading, error }] = useCreateDayPlanMutation({
+ *   variables: {
+ *      programId: // value for 'programId'
+ *      day: // value for 'day'
+ *   },
+ * });
+ */
+export function useCreateDayPlanMutation(baseOptions?: Apollo.MutationHookOptions<CreateDayPlanMutation, CreateDayPlanMutationVariables>) {
+        return Apollo.useMutation<CreateDayPlanMutation, CreateDayPlanMutationVariables>(CreateDayPlanDocument, baseOptions);
+      }
+export type CreateDayPlanMutationHookResult = ReturnType<typeof useCreateDayPlanMutation>;
+export type CreateDayPlanMutationResult = Apollo.MutationResult<CreateDayPlanMutation>;
+export type CreateDayPlanMutationOptions = Apollo.BaseMutationOptions<CreateDayPlanMutation, CreateDayPlanMutationVariables>;
 export const CreateExerciseDocument = gql`
     mutation CreateExercise($input: ExerciseInput!) {
   createExercise(input: $input) {

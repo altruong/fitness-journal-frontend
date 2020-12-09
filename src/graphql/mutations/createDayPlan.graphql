@@ -1,0 +1,8 @@
+mutation CreateDayPlan($programId: Int!, $day: Int!) {
+  createDayPlan(programId: $programId, day: $day) {
+    id
+    day
+    updated_at
+    created_at
+  }
+}

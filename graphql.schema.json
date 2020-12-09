@@ -332,6 +332,20 @@
             "description": null,
             "args": [
               {
+                "name": "day",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "programId",
                 "description": null,
                 "type": {
