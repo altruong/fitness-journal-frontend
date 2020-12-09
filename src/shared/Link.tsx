@@ -8,19 +8,30 @@ import {
 // Allow this component to accept all properties of "a" tag
 type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   ChakraLinkProps & {
-    to: string;
+    to: string | { href: string; as: string };
     // we can add more properties we need from next/link in the future
   };
 
 export const Link = React.forwardRef((props: LinkProps, ref: any) => {
   const { to, children, ...rest } = props;
+  // Normal link
+  if (typeof to === 'string') {
+    return (
+      <div>
+        <NextLink href={to}>
+          <ChakraLink {...rest} ref={ref}>
+            {children}
+          </ChakraLink>
+        </NextLink>
+      </div>
+    );
+  }
+  // Dynamic next link
   return (
-    <div>
-      <NextLink href={to}>
-        <ChakraLink {...rest} ref={ref}>
-          {children}
-        </ChakraLink>
-      </NextLink>
-    </div>
+    <NextLink href={to.href} as={to.as}>
+      <ChakraLink {...rest} ref={ref}>
+        {children}
+      </ChakraLink>
+    </NextLink>
   );
 });
