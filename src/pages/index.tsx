@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <>
       <Navbar constrain />
-
+      {/* TODO: Add an Edit toggle  */}
       <Box mt={8} mx='auto' maxW={'800px'}>
         <PostForm />
         <Stack spacing={8}>

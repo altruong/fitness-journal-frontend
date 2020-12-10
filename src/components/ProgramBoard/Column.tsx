@@ -1,4 +1,4 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Button, Flex, Heading } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Card } from './Card';
@@ -13,6 +13,9 @@ interface ColumnProps {
 export const Column: React.FC<ColumnProps> = (props: any) => {
   const [isAddingCard, setIsAddingCard] = useState(false);
 
+  const toggleAddState = () => {
+    setIsAddingCard(!isAddingCard);
+  };
   const { column, columnId, index, exercises } = props;
   return (
     <Draggable draggableId={columnId} index={index}>
@@ -41,12 +44,16 @@ export const Column: React.FC<ColumnProps> = (props: any) => {
               </Flex>
             )}
           </Droppable>
-          <div
-            className='AddNewExercise'
-            onClick={() => setIsAddingCard(!isAddingCard)}
-          >
-            Add a card
-          </div>
+          {isAddingCard ? (
+            <div className='AddNewExercise' onClick={() => toggleAddState()}>
+              Add a card
+            </div>
+          ) : (
+            <>
+              <Button onClick={() => toggleAddState()}>Goback</Button>
+              <div>Click to add card</div>
+            </>
+          )}
         </Flex>
       )}
     </Draggable>
