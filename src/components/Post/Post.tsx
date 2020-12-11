@@ -27,9 +27,9 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
     if (value !== title) {
       const response = await updatePost({
         variables: { id: postId, text: text, title: value },
-        update: (cache) => {
-          cache.evict({ fieldName: 'posts' }); //evicts entire post
-        },
+        // update: (cache) => {
+        //   cache.evict({ fieldName: 'posts' }); //evicts entire post
+        // },
       });
       console.log(response.data?.updatePost);
     }
@@ -39,9 +39,9 @@ export const Post: React.FC<PostProps> = ({ postId, title, text, ...rest }) => {
     if (value !== text) {
       const response = await updatePost({
         variables: { id: postId, text: value, title: title },
-        update: (cache) => {
-          cache.evict({ fieldName: 'posts' }); //evicts entire post
-        },
+        // update: (cache) => {
+        //   cache.evict({ fieldName: 'posts' }); //evicts entire post
+        // },
       });
       console.log(response.data?.updatePost);
     }
