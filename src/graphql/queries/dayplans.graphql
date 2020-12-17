@@ -1,0 +1,13 @@
+query DayPlans($programId: Int!) {
+  dayPlans(programId: $programId) {
+    id
+    day
+    created_at
+    updated_at
+    program_id
+    exercises {
+      id
+      notes
+    }
+  }
+}

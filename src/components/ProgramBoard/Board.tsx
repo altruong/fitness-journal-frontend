@@ -6,6 +6,7 @@ import {
   Droppable,
   resetServerContext,
 } from 'react-beautiful-dnd';
+import { useGetIntId } from 'utils/useGetIntId';
 import { Column } from './Column';
 
 interface BoardProps {}
@@ -14,6 +15,10 @@ export const Board: React.FC<BoardProps> = ({}) => {
   const onDragEnd = (result) => {
     return;
   };
+
+  //dayPlans;
+  const programId = useGetIntId();
+  console.log(programId);
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

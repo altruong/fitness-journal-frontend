@@ -15,15 +15,45 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  dayPlans: Array<DayPlan>;
   post?: Maybe<Post>;
   posts: Array<Post>;
   me?: Maybe<User>;
 };
 
 
+export type QueryDayPlansArgs = {
+  programId: Scalars['Int'];
+};
+
+
 export type QueryPostArgs = {
   id: Scalars['Int'];
 };
+
+export type DayPlan = {
+  __typename?: 'DayPlan';
+  id: Scalars['Int'];
+  program_id: Scalars['Int'];
+  exercises?: Maybe<Array<Exercise>>;
+  day: Scalars['Int'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+};
+
+export type Exercise = {
+  __typename?: 'Exercise';
+  id: Scalars['Int'];
+  exercise_type_id: Scalars['Int'];
+  reps: Scalars['Float'];
+  sets: Scalars['Float'];
+  intensity: Scalars['Float'];
+  order: Scalars['Float'];
+  notes?: Maybe<Scalars['String']>;
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+};
+
 
 export type Post = {
   __typename?: 'Post';
@@ -33,7 +63,6 @@ export type Post = {
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
 };
-
 
 export type User = {
   __typename?: 'User';
@@ -135,28 +164,6 @@ export type MutationRegisterArgs = {
 export type MutationLoginArgs = {
   password: Scalars['String'];
   email: Scalars['String'];
-};
-
-export type DayPlan = {
-  __typename?: 'DayPlan';
-  id: Scalars['Int'];
-  program_id: Scalars['Int'];
-  day: Scalars['Int'];
-  created_at: Scalars['DateTime'];
-  updated_at: Scalars['DateTime'];
-};
-
-export type Exercise = {
-  __typename?: 'Exercise';
-  id: Scalars['Int'];
-  exercise_type_id: Scalars['Int'];
-  reps: Scalars['Float'];
-  sets: Scalars['Float'];
-  intensity: Scalars['Float'];
-  order: Scalars['Float'];
-  notes?: Maybe<Scalars['String']>;
-  created_at: Scalars['DateTime'];
-  updated_at: Scalars['DateTime'];
 };
 
 export type ExerciseInput = {
@@ -330,6 +337,23 @@ export type RegisterMutation = (
       & Pick<User, 'id' | 'first_name' | 'last_name' | 'username' | 'email'>
     )> }
   ) }
+);
+
+export type DayPlansQueryVariables = Exact<{
+  programId: Scalars['Int'];
+}>;
+
+
+export type DayPlansQuery = (
+  { __typename?: 'Query' }
+  & { dayPlans: Array<(
+    { __typename?: 'DayPlan' }
+    & Pick<DayPlan, 'id' | 'day' | 'created_at' | 'updated_at' | 'program_id'>
+    & { exercises?: Maybe<Array<(
+      { __typename?: 'Exercise' }
+      & Pick<Exercise, 'id' | 'notes'>
+    )>> }
+  )> }
 );
 
 export type PostQueryVariables = Exact<{
@@ -695,6 +719,47 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const DayPlansDocument = gql`
+    query DayPlans($programId: Int!) {
+  dayPlans(programId: $programId) {
+    id
+    day
+    created_at
+    updated_at
+    program_id
+    exercises {
+      id
+      notes
+    }
+  }
+}
+    `;
+
+/**
+ * __useDayPlansQuery__
+ *
+ * To run a query within a React component, call `useDayPlansQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDayPlansQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDayPlansQuery({
+ *   variables: {
+ *      programId: // value for 'programId'
+ *   },
+ * });
+ */
+export function useDayPlansQuery(baseOptions?: Apollo.QueryHookOptions<DayPlansQuery, DayPlansQueryVariables>) {
+        return Apollo.useQuery<DayPlansQuery, DayPlansQueryVariables>(DayPlansDocument, baseOptions);
+      }
+export function useDayPlansLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DayPlansQuery, DayPlansQueryVariables>) {
+          return Apollo.useLazyQuery<DayPlansQuery, DayPlansQueryVariables>(DayPlansDocument, baseOptions);
+        }
+export type DayPlansQueryHookResult = ReturnType<typeof useDayPlansQuery>;
+export type DayPlansLazyQueryHookResult = ReturnType<typeof useDayPlansLazyQuery>;
+export type DayPlansQueryResult = Apollo.QueryResult<DayPlansQuery, DayPlansQueryVariables>;
 export const PostDocument = gql`
     query Post($id: Int!) {
   post(id: $id) {

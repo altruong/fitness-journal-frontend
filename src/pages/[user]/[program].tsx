@@ -7,10 +7,13 @@ import React from 'react';
 import { Board } from 'components/ProgramBoard/Board';
 import { GetStaticProps } from 'next';
 import { resetServerContext } from 'react-beautiful-dnd';
+import { useGetIntId } from 'utils/useGetIntId';
 
 interface ProgramProps {}
 
 const Program: React.FC<ProgramProps> = ({}) => {
+  const programId = useGetIntId();
+  console.log(programId);
   return (
     <Flex className='app' width='100vw'>
       <Sidebar />
