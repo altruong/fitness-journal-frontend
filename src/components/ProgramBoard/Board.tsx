@@ -12,7 +12,7 @@ export const Board: React.FC<BoardProps> = ({ programId }) => {
   const { data, error, loading } = useDayPlansQuery({
     variables: { programId },
   });
-  console.log(data);
+
   const onDragEnd = (result) => {
     return;
   };

@@ -14,7 +14,7 @@ interface ColumnProps {
 
 export const Column: React.FC<ColumnProps> = (props: any) => {
   const { column, index, exercises } = props;
-  console.log(props);
+
   return (
     <Draggable draggableId={column.id.toString()} index={index}>
       {(provided) => (
