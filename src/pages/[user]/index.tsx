@@ -10,7 +10,7 @@ const User: React.FC<UserProps> = ({}) => {
   return (
     <div>
       Dashboard
-      <Link to={path.program(userId, programId)}>Link to user program</Link>
+      <Link to={path.program(userId, programId)}>Link to user programs</Link>
     </div>
   );
 };
