@@ -1,4 +1,5 @@
 import { Button, Flex, Heading } from '@chakra-ui/react';
+import { DayPlan } from 'generated/graphql';
 import React, { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { AddCard } from './AddCard';
@@ -7,14 +8,15 @@ import { Card } from './Card';
 interface ColumnProps {
   column: any;
   index: any;
-  columnId: any;
+  // columnId: any;
   exercises: any;
 }
 
 export const Column: React.FC<ColumnProps> = (props: any) => {
-  const { column, columnId, index, exercises } = props;
+  const { column, index, exercises } = props;
+  console.log(props);
   return (
-    <Draggable draggableId={columnId} index={index}>
+    <Draggable draggableId={column.id.toString()} index={index}>
       {(provided) => (
         <Flex
           className='Column'
@@ -28,7 +30,7 @@ export const Column: React.FC<ColumnProps> = (props: any) => {
           {...provided.dragHandleProps}
         >
           <Heading>{column.title}</Heading>
-          <Droppable droppableId={columnId}>
+          <Droppable droppableId={column.id.toString()}>
             {(provided) => (
               <Flex flexDir='column' ref={provided.innerRef}>
                 {exercises.map((exercise, index) => {

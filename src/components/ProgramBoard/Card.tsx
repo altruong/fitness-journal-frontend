@@ -9,9 +9,10 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = (props) => {
   const { exercise, index } = props;
+  console.log(props);
 
   return (
-    <Draggable draggableId={exercise.id} index={index}>
+    <Draggable draggableId={exercise.id.toString()} index={index}>
       {(provided) => (
         <Flex
           className='Card'
@@ -23,7 +24,7 @@ export const Card: React.FC<CardProps> = (props) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          {exercise.content}
+          {exercise.notes}
         </Flex>
       )}
     </Draggable>

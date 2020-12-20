@@ -1,47 +1,46 @@
 import { Flex } from '@chakra-ui/react';
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { useDayPlansQuery } from 'generated/graphql';
 import React from 'react';
-import {
-  DragDropContext,
-  Droppable,
-  resetServerContext,
-} from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Column } from './Column';
 
-interface BoardProps {}
+interface BoardProps {
+  programId: number;
+}
 
-export const Board: React.FC<BoardProps> = ({}) => {
+export const Board: React.FC<BoardProps> = ({ programId }) => {
+  const { data, error, loading } = useDayPlansQuery({
+    variables: { programId },
+  });
+  console.log(data);
   const onDragEnd = (result) => {
     return;
   };
-
-  return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId='board' direction='horizontal' type='COLUMN'>
-        {(provided) => (
-          <Flex className='Board' flex-wrap='wrap' ref={provided.innerRef}>
-            {initialData.columnOrder.map((id, index) => {
-              const column = initialData.columns[id];
-              const exercises = column.taskIds.map(
-                (taskId) => initialData.tasks[taskId]
-              );
-
-              return (
-                <Column
-                  key={id}
-                  columnId={id}
-                  column={column}
-                  index={index}
-                  exercises={exercises}
-                ></Column>
-              );
-            })}
-            {provided.placeholder}
-          </Flex>
-        )}
-      </Droppable>
-    </DragDropContext>
-  );
+  if (!data && loading) {
+    return <div>loading</div>;
+  } else {
+    return (
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId='board' direction='horizontal' type='COLUMN'>
+          {(provided) => (
+            <Flex className='Board' flex-wrap='wrap' ref={provided.innerRef}>
+              {data.dayPlans.map((dayPlan, index) => {
+                return (
+                  <Column
+                    key={dayPlan.id.toString()}
+                    column={dayPlan}
+                    index={index}
+                    exercises={dayPlan.exercises}
+                  ></Column>
+                );
+              })}
+              {provided.placeholder}
+            </Flex>
+          )}
+        </Droppable>
+      </DragDropContext>
+    );
+  }
 };
 
 const initialData = {

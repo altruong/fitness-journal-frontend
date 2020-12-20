@@ -348,10 +348,10 @@ export type DayPlansQuery = (
   { __typename?: 'Query' }
   & { dayPlans: Array<(
     { __typename?: 'DayPlan' }
-    & Pick<DayPlan, 'id' | 'day' | 'created_at' | 'updated_at' | 'program_id'>
+    & Pick<DayPlan, 'id' | 'day' | 'program_id'>
     & { exercises?: Maybe<Array<(
       { __typename?: 'Exercise' }
-      & Pick<Exercise, 'id' | 'notes'>
+      & Pick<Exercise, 'id' | 'reps' | 'sets' | 'notes'>
     )>> }
   )> }
 );
@@ -724,11 +724,11 @@ export const DayPlansDocument = gql`
   dayPlans(programId: $programId) {
     id
     day
-    created_at
-    updated_at
     program_id
     exercises {
       id
+      reps
+      sets
       notes
     }
   }
