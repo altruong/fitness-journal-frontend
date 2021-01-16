@@ -34,6 +34,7 @@ const Program: React.FC<ProgramProps> = ({}) => {
 export default Program;
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  // Required for reactDND
   resetServerContext();
   return { props: { data: [] } };
 };

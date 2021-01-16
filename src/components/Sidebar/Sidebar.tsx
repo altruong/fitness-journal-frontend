@@ -1,7 +1,7 @@
-import { Divider, Flex, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Divider } from '@chakra-ui/react';
 import React from 'react';
-import { MdSettings } from 'react-icons/md';
 import { SidebarItem } from './SidebarItem';
+import { MdSettings } from 'react-icons/md';
 
 interface SidebarProps {}
 
